@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+
+  mysql-db:
+    build: ./mysql
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: shopping-cart
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - ecommerce-network
+
+  ecommerce-app:
+    build: ./app
+    container_name: ecommerce-app
+    depends_on:
+      - mysql-db
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: mysql-db
+      DB_USER: root
+      DB_PASSWORD: root
+    networks:
+      - ecommerce-network
+
+networks:
+  ecommerce-network:
+
+volumes:
+  mysql_data:
