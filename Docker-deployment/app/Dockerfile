@@ -2,7 +2,7 @@ FROM tomcat:9-jdk11
 
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-COPY shopping-app.war /usr/local/tomcat/webapps/shopping-cart.war
+COPY shopping-app.war /usr/local/tomcat/webapps/shopping-app.war
 
 EXPOSE 8080
 
