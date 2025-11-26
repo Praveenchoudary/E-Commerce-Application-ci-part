@@ -68,11 +68,11 @@ pipeline {
         stage("Build Docker Images") {
             steps {
                 sh """
-                    # Build Application Image (ONLY BUILD NUMBER TAG)
+                    # Build Application Image 
                     cd Docker-deployment/app
                     docker build -t ${APP_IMAGE}:${BUILD_NUMBER} .
 
-                    # Build MySQL Image (ONLY BUILD NUMBER TAG)
+                    # Build MySQL Image 
                     cd ../mysql
                     docker build -t ${MYSQL_IMAGE}:${BUILD_NUMBER} .
                 """
@@ -98,7 +98,6 @@ pipeline {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub-creds') {
 
-                        // Push ONLY BUILD NUMBER tags
                         sh "docker push ${APP_IMAGE}:${BUILD_NUMBER}"
                         sh "docker push ${MYSQL_IMAGE}:${BUILD_NUMBER}"
                     }
