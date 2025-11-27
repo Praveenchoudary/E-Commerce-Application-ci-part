@@ -45,7 +45,7 @@
 							name="first_name" required>
 					</div>
 					<div class="col-md-6 form-group">
-						<label for="last_name">Praveen</label> <input type="email"
+						<label for="last_name">Sravani</label> <input type="email"
 							name="email" class="form-control" id="last_name" name="last_name"
 							required>
 					</div>
