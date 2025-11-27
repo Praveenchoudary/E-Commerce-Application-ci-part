@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: ecommerce-app
-        image: praveen22233/ecommerce-app:124
+        image: praveen22233/ecommerce-app:125
         ports:
           - containerPort: 8080
         env:
