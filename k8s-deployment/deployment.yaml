@@ -1,37 +1,27 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
-  name: mysql-db
+  name: ecommerce-app
   namespace: ecommerce
 spec:
-  serviceName: mysql-db
   replicas: 1
   selector:
     matchLabels:
-      app: mysql-db
+      app: ecommerce-app
   template:
     metadata:
       labels:
-        app: mysql-db
+        app: ecommerce-app
     spec:
       containers:
-      - name: mysql-db
-        image: praveen22233/ecommerce-mysql:IMAGE_TAG
+      - name: ecommerce-app
+        image: praveen22233/ecommerce-app:IMAGE_TAG
         ports:
-          - containerPort: 3306
+          - containerPort: 8080
         env:
-          - name: MYSQL_ROOT_PASSWORD
+          - name: DB_HOST
+            value: mysql-db
+          - name: DB_USER
             value: root
-          - name: MYSQL_DATABASE
-            value: shopping-cart
-        volumeMounts:
-          - name: mysql-storage
-            mountPath: /var/lib/mysql
-  volumeClaimTemplates:
-  - metadata:
-      name: mysql-storage
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      resources:
-        requests:
-          storage: 2Gi
+          - name: DB_PASSWORD
+            value: root
