@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: mysql-db
-        image: praveen22233/ecommerce-mysql:IMAGE_TAG
+        image: praveen22233/ecommerce-mysql:55
         ports:
           - containerPort: 3306
         env:
